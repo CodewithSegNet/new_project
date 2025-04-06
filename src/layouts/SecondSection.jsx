@@ -28,7 +28,7 @@ const SecondSection = () => {
               transition={{ duration: 0.5, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              <h1 className="font-semibold leading-[50px] lg:leading-[80px] text-[40px] lg:text-[60px] text-white ">
+              <h1 className="font-semibold leading-[50px] lg:leading-[80px] text-[40px] pr-2 md:pr-[0] lg:text-[60px] text-white ">
                 The Growing Hunger Crisis in{" "}
                 <span className="text-[#004D00]">Nigeria</span>, A Threat to Our
                 Children's Future
