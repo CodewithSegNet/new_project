@@ -56,7 +56,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 lg:pr-[1.8rem] 2xl:pr-[5rem]">
+        <div className="hidden lg:flex items-center gap-6 lg:pr-[1.8rem] 2xl:pr-[5rem]">
           <Link
             to="/what-we-do"
             className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
@@ -84,14 +84,14 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden">
           {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Menu from the Left */}
       <div
-  className={`md:hidden fixed top-0 left-0 h-screen w-3/4 z-[60] bg-gradient-to-r from-white/80 to-white/60 backdrop-blur-md shadow-md transform transition-transform duration-300 ${
+  className={`lg:hidden fixed top-0 left-0 h-screen w-3/4 z-[60] bg-gradient-to-r from-white/80 to-white/60 backdrop-blur-md shadow-md transform transition-transform duration-300 ${
     menuOpen ? "translate-x-0" : "-translate-x-full"
   }`}
 >
