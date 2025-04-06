@@ -77,7 +77,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/donate"
-            className="py-[11px] px-[24px] leading-[24px] bg-primary rounded-[90px] text-[12px] font-bold text-sm hover:bg-regular text-white transition-all duration-100"
+            className="py-[11px] px-[24px] leading-[24px] bg-primary rounded-[90px] text-[12px] font-bold text-sm hover:bg-secondary hover:text-primary text-white transition-all duration-100"
           >
             Donate Now
           </Link>
@@ -129,7 +129,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/donate"
-            className="py-[11px] px-[34px] leading-[24px] bg-primary rounded-[90px] text-[12px] font-bold text-sm hover:bg-regular text-white transition-all duration-100"
+            className="py-[11px] px-[34px] leading-[24px] bg-primary rounded-[90px] text-[12px] font-bold text-sm hover:bg-secondary hover:text-primary text-white transition-all duration-100"
             onClick={() => setMenuOpen(false)}
           >
             Donate
