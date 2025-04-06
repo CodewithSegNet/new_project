@@ -25,7 +25,7 @@ const SecondSection = () => {
               className="max-w-[708px] pt-[2rem] ml-[1rem] lg:pt-[3rem] lg:ml-[3rem]"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
               viewport={{ once: true }}
             >
               <h1 className="font-semibold leading-[50px] lg:leading-[80px] text-[40px] pr-2 md:pr-[0] lg:text-[60px] text-white ">
