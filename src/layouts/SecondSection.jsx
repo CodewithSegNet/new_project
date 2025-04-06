@@ -12,7 +12,7 @@ import { fadeVariants } from "../utils/varients";
 const SecondSection = () => {
   return (
     <>
-      <section className="mt-[1rem] lg:mt-[0rem]">
+      <section className="">
         <div className="flex-1">
           <div
             className="h-[600px] bg-cover bg-center"

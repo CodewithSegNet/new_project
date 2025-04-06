@@ -53,7 +53,7 @@ const HomePage = () => {
           <Simplepage />
           </div>
   
-  <div className="pt-[27rem] md:pt-[22rem] lg:pt-[0rem]">
+  <div className="pt-[31rem] md:pt-[22rem] lg:pt-[0rem]">
   <Secondpage/>
 
   </div>
