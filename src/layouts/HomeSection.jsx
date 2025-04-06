@@ -8,13 +8,14 @@ import HeroImg from "../assets/homepage.jpeg";
 import { motion } from "framer-motion";
 import Testimony from "../assets/testimony.jpg";
 import { fadeVariants } from "../utils/varients";
+import smallbutton from "../assets/newbutton.svg"
 
 
 
 const FirstSection = () => {
   return (
     <>
-      <motion.section className="flex h-[680px]"
+      <motion.section className="flex flex-col lg:flex-row h-[680px]"
          initial={{ opacity: 0, scale: 0.9 }}
          animate={{ opacity: 1, scale: 1 }}
          transition={{ duration: 1.8, ease: "easeInOut" }}
@@ -27,22 +28,22 @@ const FirstSection = () => {
               alt="contributors that has empower lives"
               className="h-[40px]"
             />
-            <p className="flex items-center">
-              <span className="text-black font-semibold">1000+</span>Donor
+            <p className="flex lg:text-sm text-[12px] items-center">
+              <span className="text-black font-semibold mr-1">1000+</span> Donor
               Community Members
             </p>
           </motion.div>
 
           <motion.div
           >
-            <h1 className="font-semibold w-[515px] text-6xl">
+            <h1 className="font-semibold lg:w-[515px] leading-[3rem] text-4xl lg:text-6xl">
               Building a <span className="text-[#004D00]">Brighter</span> Future
               Together
             </h1>
           </motion.div>
 
           <div>
-            <p className="text-sm font-normal w-[515px] pr-[45px] leading-6">
+            <p className="text-sm font-normal lg:w-[515px] pb-2 pr-[45px] leading-6">
               Join us in our mission to create lasting change, communities, and
               drive innovation for a brighter and more sustainable future.
               Together, we can make a real difference.
@@ -51,7 +52,8 @@ const FirstSection = () => {
 
           <div className="flex items-center gap-3">
             <button>
-              <img src={ButtonImg} alt="" className=" h-[78px]" />
+              <img src={ButtonImg} alt="" className="hidden lg:flex h-[78px]" />
+              <img src={smallbutton} alt="" className="flex lg:hidden h-[58px]" />
             </button>
 
             <button>
@@ -60,11 +62,11 @@ const FirstSection = () => {
           </div>
 
           <div>
-            <h3 className="font-bold text-sm pb-3">Our Partners</h3>
+            <h3 className="font-bold text-sm py-3">Our Partners</h3>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center pb-6 gap-3 lg:gap-5">
               <div className="flex gap-1 items-center">
-                <div className="h-[32px] w-[32px] rounded-sm overflow-hidden">
+                <div className="h-[22.7px] w-[22.7px] lg:h-[32px] lg:w-[32px] rounded-sm overflow-hidden">
                   <img
                     src={SmashPay}
                     alt=""
@@ -72,41 +74,41 @@ const FirstSection = () => {
                   />
                 </div>
 
-                <p className="text-sm font-bold">SmashRemite</p>
+                <p className="text-[11.2px] lg:text-sm font-bold">SmashPay</p>
               </div>
 
               <div className="flex gap-1 items-center">
-                <div className="h-[32px] w-[32px] rounded-sm overflow-hidden">
+                <div className="h-[22.7px] w-[22.7px] lg:h-[32px] lg:w-[32px] rounded-sm overflow-hidden">
                   <img
                     src={SmashTech}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm font-bold">Ridesmash</p>
+                <p className="text-[11.2px] lg:text-sm font-bold">Ridesmash</p>
               </div>
 
               <div className="flex gap-1 items-center">
-                <div className="h-[32px] w-[32px] rounded-sm overflow-hidden">
+                <div className="h-[22.7px] w-[22.7px] lg:h-[32px] lg:w-[32px] rounded-sm overflow-hidden">
                   <img
                     src={Ridesmash}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm font-bold">Smash Technology</p>
+                <p className="text-[11.2px] lg:text-sm font-bold">Smash Technology</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 justify-center items-center">
           <div
-            className="h-[680px] w-[635px] rounded-[50px] bg-cover bg-center relative "
+            className="h-[417px] lg:h-[680px] lg:w-[635px] rounded-[50px] bg-cover bg-center relative "
             style={{ backgroundImage: `url(${HeroImg})` }}
           >
             <motion.div
-              className="absolute top-[229px] left-5"
+              className="absolute top-[76px] lg:top-[229px] left-2 lg:left-5"
               animate={{
                 y: [0, -10, 0],
               }}
@@ -124,7 +126,7 @@ const FirstSection = () => {
             </motion.div>
 
             <motion.div
-              className="w-[299px] bg-[#ffffff] p-[24px] rounded-[49.8px] absolute bottom-[-100px] left-[-80px] shadow-md"
+              className="w-[299px] bg-[#ffffff] p-[24px] hidden lg:block rounded-[49.8px] absolute bottom-[-100px] left-[-80px] shadow-md"
               animate={{
                 y: [0, -10, 0],
               }}
@@ -169,7 +171,38 @@ const FirstSection = () => {
               </p>
             </motion.div>
           </div>
+
+
+          <motion.div
+              className="w-[299px] bg-[#ffffff] p-[24px] block lg:hidden mx-auto rounded-[49.8px] mt-10 shadow-md"
+              animate={{
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+            >
+              <h3 className="font-bold">Dedicated Team</h3>
+              <p className="font-normal text-[12px] leading-[24px] pt-5 pb-7">
+                Our team consists of professionals, advocates, and volunteers
+                who work tirelessly to implement impactful initiatives, foster
+                innovation, and create sustainable solutions for a better
+                future.
+              </p>
+
+              <div className="flex items-center gap-4">
+                <div>
+                  <img src={Donators} alt="" className="h-[40px]" />
+                </div>
+
+                <p className="font-bold text-[40px]">50+</p>
+              </div>
+            </motion.div>
         </div>
+
+     
       </motion.section>
     </>
   );

@@ -1,6 +1,8 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Simplepage from "../../layouts/HomeSection";
 import Navbar from "../../layouts/Navbar";
+import Secondpage from "../../layouts/SecondSection";
+
 
 const HomePage = () => {
   return (
@@ -44,9 +46,18 @@ const HomePage = () => {
           <link rel="canonical" href="https://www.paulsmithinitiative.org" />
         </Helmet>
 
-        <div className="mx-6 mt-[1rem]">
+        <div>
+
+          <div  className="mx-4 md:mx-6 mt-[8rem] lg:mt-[1rem] pb-[7rem] lg:pb-[8rem]">
           <Navbar />
           <Simplepage />
+          </div>
+  
+  <div className="pt-[31rem] lg:pt-[0rem]">
+  <Secondpage/>
+
+  </div>
+
         </div>
       </HelmetProvider>
     </>

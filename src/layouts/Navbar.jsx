@@ -1,53 +1,84 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/logo.svg"; // Replace with your logo path
-import { Menu, X } from "lucide-react"; // Icons for mobile menu
+import Logo from "../assets/logo.svg";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(true);  // Initially visible
-  const [lastScrollY, setLastScrollY] = useState(0); // Track last scroll position
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    // Function to handle scroll behavior
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        // If scrolling down, hide the navbar
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current) {
         setShowNavbar(false);
       } else {
-        // If scrolling up, show the navbar
         setShowNavbar(true);
       }
-      setLastScrollY(window.scrollY);  // Update the last scroll position
+
+      setIsScrolled(currentScrollY > 0);
+      lastScrollY.current = currentScrollY;
     };
 
-    // Add the scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener on component unmount
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]); // Dependency array includes lastScrollY to re-run effect when it changes
+  }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+  }, [menuOpen]);
+
+ 
+  
   return (
-    <nav className={`fixed left-0 w-full z-50 mt-[1rem] h-[98.18px] transition-all duration-300 ${showNavbar ? "top-0" : "-top-[130.18px]"}`}>
-      <div className="max-w-screen-2xl mx-auto px-6 h-[98.18px] flex justify-between items-center">
+    <nav
+      className={`fixed left-0 w-full z-50 transition-all duration-300 ${
+        showNavbar ? "top-0" : "-top-[130.18px]"
+      } ${
+        isScrolled
+          ? "h-[70px] bg-gradient-to-r from-white/80 to-white/60 backdrop-blur-md shadow-md"
+          : "h-[98.18px]"
+      }`}
+    >
+      <div className="max-w-screen-2xl mx-auto px-6 h-full flex justify-between items-center transition-all duration-300">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold flex items-center">
-          <img src={Logo} alt="Paul Smith Initiative" className="h-auto" />
+          <img
+            src={Logo}
+            alt="Paul Smith Initiative"
+            className={`transition-all duration-300 ${
+              isScrolled ? "h-[40px] pt-0" : "h-[66px] lg:h-[98.18px] pt-2"
+            }`}
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6 lg:mr-[1rem] xl:mr-[1.8rem]">
-          <Link to="/what-we-do" className="text-gray-700 py-[8px] px-[24px] leading-[24px] bg-[#ffffff] rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100">
+        <div className="hidden md:flex items-center gap-6 lg:pr-[1.8rem] 2xl:pr-[5rem]">
+          <Link
+            to="/what-we-do"
+            className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
+          >
             What We Do
           </Link>
-          <Link to="/our-initiative" className="text-gray-700 py-[8px] px-[24px] leading-[24px] bg-[#ffffff] rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100">
+          <Link
+            to="/our-initiative"
+            className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
+          >
             Our Initiative
           </Link>
-          <Link to="/community" className="text-gray-700 py-[8px] px-[24px] leading-[24px] bg-[#ffffff] rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100">
+          <Link
+            to="/community"
+            className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
+          >
             Community
           </Link>
-          <Link to="/donate" className="py-[11px] px-[24px] leading-[24px] bg-primary rounded-[90px] text-[12px] hover:text-black font-bold text-sm hover:bg-[#ffffff] text-white transition-all duration-100">
+          <Link
+            to="/donate"
+            className="py-[11px] px-[24px] leading-[24px] bg-primary rounded-[90px] text-[12px] font-bold text-sm hover:bg-regular text-white transition-all duration-100"
+          >
             Donate Now
           </Link>
         </div>
@@ -58,25 +89,53 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
-      {menuOpen && (
-        <div className="md:hidden bg-white shadow-md absolute w-full left-0 top-16">
-          <div className="flex flex-col items-center gap-4 py-4">
-            <Link to="/what-we-do" className="text-gray-700 hover:text-green-600 font-medium">
-              What We Do
-            </Link>
-            <Link to="/our-initiative" className="text-gray-700 hover:text-green-600 font-medium">
-              Our Initiative
-            </Link>
-            <Link to="/community" className="text-gray-700 hover:text-green-600 font-medium">
-              Community
-            </Link>
-            <Link to="/donate" className="bg-green-600 text-white px-4 py-2 rounded-md font-medium hover:bg-green-700">
-              Donate
-            </Link>
-          </div>
+      {/* Mobile Menu from the Left */}
+      <div
+  className={`md:hidden fixed top-0 left-0 h-screen w-3/4 z-[60] bg-gradient-to-r from-white/80 to-white/60 backdrop-blur-md shadow-md transform transition-transform duration-300 ${
+    menuOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+<Link to="/" className="text-2xl font-bold flex justify-center items-center">
+          <img
+            src={Logo}
+            alt="Paul Smith Initiative"
+            className={`transition-all my-5 pduration-300 ${
+              isScrolled ? "h-[40px] pt-0" : "h-[66px] lg:h-[98.18px] pt-2"
+            }`}
+          />
+        </Link>
+
+        <div className="flex flex-col items-center gap-6 py-10">
+          <Link
+            to="/what-we-do"
+            className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
+            onClick={() => setMenuOpen(false)}
+          >
+            What We Do
+          </Link>
+          <Link
+            to="/our-initiative"
+            className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
+            onClick={() => setMenuOpen(false)}
+          >
+            Our Initiative
+          </Link>
+          <Link
+            to="/community"
+            className="text-secondary py-[8px] px-[24px] leading-[24px] bg-regular rounded-[90px] text-[12px] hover:text-white hover:bg-primary font-bold transition-all duration-100"
+            onClick={() => setMenuOpen(false)}
+          >
+            Community
+          </Link>
+          <Link
+            to="/donate"
+            className="py-[11px] px-[34px] leading-[24px] bg-primary rounded-[90px] text-[12px] font-bold text-sm hover:bg-regular text-white transition-all duration-100"
+            onClick={() => setMenuOpen(false)}
+          >
+            Donate
+          </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

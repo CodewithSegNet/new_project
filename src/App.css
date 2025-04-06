@@ -13,5 +13,7 @@ html, body{
 
 body {
   overflow-x: hidden;
+  min-width: 230px;
+
 }
 
